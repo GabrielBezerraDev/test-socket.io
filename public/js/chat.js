@@ -1,4 +1,3 @@
-import { io } from "https://cdn.socket.io/4.8.0/socket.io.esm.min.js";
 const bodyText = document.querySelector(".panelBodyText");
 const input = document.querySelector("input");
 const buttonSend = document.querySelector(".buttonSend");

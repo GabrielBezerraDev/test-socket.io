@@ -7,11 +7,10 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+function redirectToView(fileName,res){
     const options = {
         root: path.join(__dirname, "views")
     };
-    const fileName = "index.html";
     res.sendFile(fileName, options, function (err) {
         if (err) {
             console.error('Error sending file:', err);
@@ -19,7 +18,16 @@ app.get('/', (req, res) => {
             console.log('Sent:', fileName);
         }
     });
-});
+}
+
+
+app.get('/', (req, res) => {
+    redirectToView("index.html",res);
+}); 
+
+app.get('/tank-game', (req, res) => {
+    redirectToView("tank-game.html",res);
+}); 
 
 io.on('connection', (socket) => {
     console.log(socket.id);
