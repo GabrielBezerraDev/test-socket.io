@@ -21,6 +21,7 @@ body{
     position: absolute;
     left: 4%;
     top: 4%;
+    /* transition: 1s top; */
 }
 
 main{
