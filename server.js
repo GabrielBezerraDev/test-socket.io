@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const { createServer } = require('node:http');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -9,10 +8,17 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
+    responseView(res,"index.html");
+});
+
+app.get('/tank-game', (req,res) => {
+    responseView(res,"tank-game.html");
+})
+
+function responseView(res,fileName){
     const options = {
         root: path.join(__dirname, "views")
     };
-    const fileName = "index.html";
     res.sendFile(fileName, options, function (err) {
         if (err) {
             console.error('Error sending file:', err);
@@ -20,7 +26,7 @@ app.get('/', (req, res) => {
             console.log('Sent:', fileName);
         }
     });
-});
+}
 
 io.on('connection', (socket) => {
     console.log(socket.id);
